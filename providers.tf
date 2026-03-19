@@ -11,6 +11,18 @@ terraform {
       version = "~> 0.11"
     }
   }
+
+  # ── Remote state backend (recommended for production) ──────────────────
+  # Uncomment and fill in to store state in S3 instead of locally.
+  # State files can contain sensitive resource attributes — never commit them.
+  #
+  # backend "s3" {
+  #   bucket         = "<YOUR_TERRAFORM_STATE_BUCKET>"
+  #   key            = "rag-elastic/terraform.tfstate"
+  #   region         = "<YOUR_AWS_REGION>"
+  #   dynamodb_table = "<YOUR_LOCK_TABLE>"
+  #   encrypt        = true
+  # }
 }
 
 provider "aws" {

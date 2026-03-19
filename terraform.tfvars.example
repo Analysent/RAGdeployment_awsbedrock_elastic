@@ -1,34 +1,39 @@
-# Copy this file to terraform.tfvars and fill in your values.
-# Never commit terraform.tfvars to version control.
+# Copy this file to terraform.tfvars and fill in YOUR values.
+# NEVER commit terraform.tfvars to version control — it is excluded by .gitignore.
+#
+# All values below are PLACEHOLDERS. Replace every <...> token with your own data.
 
 # ── AWS ────────────────────────────────────────────────────
-aws_region  = "us-east-1"
+aws_region  = "us-east-1"    # e.g. "eu-west-1"
 environment = "dev"
 
 # ── Elastic Cloud ──────────────────────────────────────────
-# Found in Elastic Cloud Console → Deployment → Deployment ID
-deployment_id = "abc123def456"
+# Found in Elastic Cloud Console → Deployment overview page
+deployment_id = "<YOUR_ELASTIC_DEPLOYMENT_ID>"
 
 # Full HTTPS endpoint shown in Elastic Cloud Console
-elasticsearch_endpoint = "https://abc123def456.us-east-1.aws.elastic-cloud.com:9243"
+elasticsearch_endpoint = "https://<YOUR_ELASTIC_DEPLOYMENT_ID>.<region>.aws.elastic-cloud.com:9243"
 
-# Name of the AWS Secrets Manager secret you created (keys: username, password)
-elasticsearch_connection_secret = "elastic/deployment/credentials"
+# Name of the AWS Secrets Manager secret you created
+# Secret must contain JSON keys: "username" and "password"
+elasticsearch_connection_secret = "<YOUR_SECRETS_MANAGER_SECRET_NAME>"
 
-# PrivateLink service name — find in Elastic Cloud Console → Deployment → Security → Traffic filters
-# Format: com.amazonaws.vpce.<region>.<vpce-svc-id>
-elastic_private_link_service_name = "com.amazonaws.vpce.us-east-1.vpce-svc-0e42e1e06ed010238"
+# PrivateLink service name — find in Elastic Cloud Console:
+#   Deployment → Security → Traffic filters → Create filter → AWS PrivateLink
+# Format: com.amazonaws.vpce.<region>.vpce-svc-<service-id>
+elastic_private_link_service_name = "com.amazonaws.vpce.<region>.vpce-svc-<YOUR_ELASTIC_VPCE_SERVICE_ID>"
 
-# DNS zone for PrivateLink — typically <region>.aws.elastic-cloud.com
-elastic_private_link_zone_name = "us-east-1.aws.elastic-cloud.com"
+# DNS zone for PrivateLink — substitute your deployment region
+elastic_private_link_zone_name = "<region>.aws.elastic-cloud.com"
 
-# ── Networking (optional — defaults are fine for most deployments) ──
+# ── Networking ─────────────────────────────────────────────
+# Override these only if the defaults conflict with your existing VPC ranges
 vpc_cidr             = "10.0.0.0/16"
-availability_zones   = ["us-east-1a", "us-east-1b"]
+availability_zones   = ["<region>a", "<region>b"]
 private_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]
 public_subnet_cidrs  = ["10.0.101.0/24", "10.0.102.0/24"]
 
-# ── Bedrock models (defaults use Amazon Titan) ──────────────
+# ── Bedrock models ──────────────────────────────────────────
 bedrock_embedding_model_id = "amazon.titan-embed-text-v2:0"
 bedrock_llm_model_id       = "amazon.titan-text-express-v1"
 

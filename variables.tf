@@ -22,22 +22,27 @@ variable "project_name" {
 variable "deployment_id" {
   description = "Unique ID of the Elastic Cloud deployment (used for naming and PrivateLink)"
   type        = string
+  sensitive   = true
 }
 
 variable "elasticsearch_endpoint" {
-  description = "Elasticsearch HTTPS endpoint (e.g. https://<deployment-id>.us-east-1.aws.elastic-cloud.com:9243)"
+  description = "Elasticsearch HTTPS endpoint (e.g. https://<deployment-id>.<region>.aws.elastic-cloud.com:9243)"
   type        = string
+  sensitive   = true
 }
 
 variable "elasticsearch_connection_secret" {
   description = "Name of the AWS Secrets Manager secret containing Elastic credentials (keys: username, password)"
   type        = string
+  sensitive   = true
 }
 
 variable "elastic_private_link_service_name" {
   description = "AWS PrivateLink service name for the Elastic Cloud region (from Elastic Cloud console)"
   type        = string
-  # Example: com.amazonaws.vpce.us-east-1.vpce-svc-0e42e1e06ed010238
+  sensitive   = true
+  # Format: com.amazonaws.vpce.<region>.vpce-svc-<service-id>
+  # Find this value in: Elastic Cloud Console → Deployment → Security → Traffic filters
 }
 
 variable "elastic_private_link_zone_name" {

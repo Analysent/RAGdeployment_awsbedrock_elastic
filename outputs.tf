@@ -16,11 +16,13 @@ output "agent_endpoint" {
 output "vpc_id" {
   description = "ID of the VPC created for this deployment"
   value       = module.vpc.vpc_id
+  sensitive   = true  # VPC ID is internal infrastructure detail
 }
 
 output "elastic_vpc_endpoint_id" {
   description = "VPC Endpoint ID for the Elastic Cloud PrivateLink connection"
   value       = module.private_link.vpc_endpoint_id
+  sensitive   = true  # Internal network resource identifier
 }
 
 output "vectorizer_lambda_name" {

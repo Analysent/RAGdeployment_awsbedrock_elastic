@@ -1,31 +1,69 @@
-# Terraform state & secrets
+# ── Terraform ──────────────────────────────────────────────
+# Local Terraform directories and state
 .terraform/
 .terraform.lock.hcl
+
+# State files may contain resource IDs, ARNs, and secret values in plaintext
 terraform.tfstate
 terraform.tfstate.backup
-terraform.tfvars
+terraform.tfstate.d/
+
+# Crash log
+crash.log
+crash.*.log
+
+# All .tfvars files may contain sensitive values — keep them local only
 *.tfvars
+*.tfvars.json
+# Allow only the sanitised placeholder example
 !terraform.tfvars.example
 
-# Python
+# Override files (may contain local overrides with real values)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# ── Python ─────────────────────────────────────────────────
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+.Python
 .venv/
 venv/
+env/
+*.egg-info/
+dist/
+build/
 
-# Docker build artifacts
+# ── Docker build artefacts ──────────────────────────────────
 *.tar
+*.tar.gz
 
-# IDE
+# ── AWS credentials (never commit these) ───────────────────
+.aws/
+credentials
+aws_credentials
+*.pem
+*.key
+
+# ── Environment files ───────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── IDE / editor ────────────────────────────────────────────
 .vscode/
 .idea/
 *.swp
+*.swo
+*~
 
-# OS
+# ── OS ──────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# AWS credentials (never commit these)
-.aws/
-credentials
+# ── Secrets scanning output ──────────────────────────────────
+.gitleaks.toml.local
