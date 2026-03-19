@@ -1,0 +1,5 @@
+langchain==0.3.14
+langchain-aws==0.2.9
+langchain-elasticsearch==0.3.0
+langchain-core==0.3.29
+boto3>=1.35.0
