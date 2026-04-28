@@ -15,8 +15,7 @@ User
  │  POST /agent {"question": "..."}
  ▼
 API Gateway (HTTP API)
- │
- ▼
+
 Lambda Agent (RAG)
  ├─► Elastic Cloud (PrivateLink) ── similarity search ──► top-k chunks
  └─► Amazon Bedrock (Titan LLM) ── generates answer with context
